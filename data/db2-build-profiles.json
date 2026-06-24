@@ -1,0 +1,25 @@
+{
+  "format": "classic-realm-db2-build-profiles",
+  "version": 1,
+  "defaultProfile": "bc_anniversary_68101",
+  "profiles": {
+    "bc_anniversary_68101": {
+      "profile": "bc_anniversary_68101",
+      "label": "WoW Burning Crusade Anniversary 2.5.5.68101",
+      "product": "wow_anniversary",
+      "region": "eu",
+      "locale": "enUS",
+      "buildId": "68101",
+      "versionName": "2.5.5.68101",
+      "buildConfig": "bc3b8e61b6ba9f0686029dca74271889",
+      "cdnConfig": "a84be43ded0ba32d1617242ee87fa646",
+      "productConfig": "92cbb948f8b043dc019e4447149478d5",
+      "listfileRevision": "pinned-at-inventory-time",
+      "dbdRevision": "pinned-at-inventory-time",
+      "hotfixStatus": "base-cdn-only",
+      "observedDb2CountBaseline": 1242,
+      "shippedDbBudgetBytes": 8388608,
+      "notes": "The observed DB2 count is a sanity baseline from wow.export/listfile discovery, not a hard gate. The pinned build root plus pinned listfile is authoritative."
+    }
+  }
+}

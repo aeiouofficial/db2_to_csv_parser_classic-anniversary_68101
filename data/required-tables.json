@@ -1,0 +1,83 @@
+{
+  "format": "classic-realm-required-db2-tables",
+  "version": 1,
+  "profile": "bc_anniversary_68101",
+  "runtimeAllowlist": [
+    "ChrRaces",
+    "ChrClasses",
+    "ChrCustomization",
+    "ChrCustomizationChoice",
+    "CharBaseSection",
+    "CharSections",
+    "Item",
+    "ItemSparse",
+    "ItemDisplayInfo",
+    "ItemAppearance",
+    "Spell",
+    "SpellEffect",
+    "SpellMisc",
+    "SpellIcon",
+    "CreatureDisplayInfo",
+    "CreatureModelData",
+    "ModelFileData",
+    "AnimationData",
+    "Map",
+    "MapDifficulty",
+    "AreaTable",
+    "LiquidType",
+    "Light",
+    "LightData",
+    "SoundKit",
+    "SoundKitEntry"
+  ],
+  "systems": {
+    "characterCreation": {
+      "semanticIndex": "assets/db/semantic/character-creation.json",
+      "required": ["ChrRaces", "ChrClasses"],
+      "optional": ["ChrCustomization", "ChrCustomizationChoice", "CharBaseSection", "CharSections"],
+      "expectedKeys": ["ID"]
+    },
+    "items": {
+      "semanticIndex": "assets/db/semantic/items.json",
+      "required": ["Item"],
+      "optional": ["ItemSparse", "ItemDisplayInfo", "ItemAppearance"],
+      "expectedKeys": ["ID"]
+    },
+    "spells": {
+      "semanticIndex": "assets/db/semantic/spells.json",
+      "required": ["Spell"],
+      "optional": ["SpellEffect", "SpellMisc", "SpellIcon"],
+      "expectedKeys": ["ID"]
+    },
+    "models": {
+      "semanticIndex": "assets/db/semantic/model-index.json",
+      "required": ["CreatureDisplayInfo", "CreatureModelData"],
+      "optional": ["ModelFileData", "AnimationData"],
+      "expectedKeys": ["ID"]
+    },
+    "world": {
+      "semanticIndex": "assets/db/semantic/world-index.json",
+      "required": ["Map", "AreaTable"],
+      "optional": ["MapDifficulty", "LiquidType", "Light", "LightData"],
+      "expectedKeys": ["ID"]
+    },
+    "creatures": {
+      "semanticIndex": "assets/db/semantic/creatures.json",
+      "required": ["CreatureDisplayInfo"],
+      "optional": ["CreatureModelData"],
+      "expectedKeys": ["ID"]
+    },
+    "sounds": {
+      "semanticIndex": "assets/db/semantic/sound-index.json",
+      "required": [],
+      "optional": ["SoundKit", "SoundKitEntry"],
+      "expectedKeys": ["ID"]
+    },
+    "icons": {
+      "semanticIndex": "assets/db/semantic/icons.json",
+      "required": [],
+      "optional": ["SpellIcon"],
+      "expectedKeys": ["ID"]
+    }
+  }
+}

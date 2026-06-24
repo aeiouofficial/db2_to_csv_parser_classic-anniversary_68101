@@ -1,0 +1,28 @@
+{
+  "name": "db2-to-csv-parser-classic-anniversary-68101",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Standalone World of Warcraft Classic (Burning Crusade Anniversary, build 2.5.5.68101) DB2 -> CSV exporter. Streams DB2 tables from the Blizzard CASC CDN and decodes them to CSV via a patched @rhyster/wow-casc-dbc.",
+  "license": "MIT",
+  "bin": {
+    "db2-export": "tools/export-wow-db2-csv.mjs"
+  },
+  "scripts": {
+    "export": "node tools/export-wow-db2-csv.mjs --csv --build=68101 --profile=bc_anniversary_68101",
+    "export:verbose": "node tools/run-db2-export-verbose.mjs",
+    "export:liquidtype": "node tools/export-wow-db2-csv.mjs --table=liquidtype --profile=bc_anniversary_68101",
+    "inventory": "node tools/export-wow-db2-csv.mjs --inventory --profile=bc_anniversary_68101",
+    "verify": "node tools/export-wow-db2-csv.mjs --verify",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@rhyster/wow-casc-dbc": "2.15.10"
+  },
+  "devDependencies": {
+    "patch-package": "8.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
