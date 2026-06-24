@@ -1,4 +1,5 @@
 # DB2 → CSV Parser — WoW Classic Anniversary (build 68101)
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/7e2ed47c-6a66-4200-a9b3-ff1a94eef13b" />
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
@@ -29,6 +30,7 @@ No game installation required. No bundled game data. Point it at the CDN, get CS
 ---
 
 ## Features
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/802d4f97-8d4a-42b0-8be8-fbd77c38f4c2" />
 
 - **Fully self-contained** — pulls the lib, applies its fix, and fetches data on its own. A fresh clone just works.
 - **Streams straight from the CDN** — no local WoW install, no manual file extraction.
@@ -46,6 +48,7 @@ No game installation required. No bundled game data. Point it at the CDN, get CS
 | **~150 MB free disk** | CDN archives + decoded CSV output. |
 
 ## Installation
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/45ac2aeb-8126-4dad-9215-932873be536d" />
 
 ```bash
 git clone <your-repo-url>
