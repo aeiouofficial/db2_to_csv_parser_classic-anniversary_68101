@@ -1,0 +1,96 @@
+diff --git a/node_modules/@rhyster/wow-casc-dbc/dist/index.cjs b/node_modules/@rhyster/wow-casc-dbc/dist/index.cjs
+index 234c225..01d68ac 100644
+--- a/node_modules/@rhyster/wow-casc-dbc/dist/index.cjs
++++ b/node_modules/@rhyster/wow-casc-dbc/dist/index.cjs
+@@ -1457,9 +1457,24 @@ class WDCReader {
+                   fieldInfo.fieldSizeBits
+                 );
+                 if (typeof value === "bigint") {
++                  const count = fieldInfo.fieldSizeBits / 32;
++                  let str = "";
++                  if (count > 1 && Number.isInteger(count)) {
++                    const strings = [];
++                    let temp = value;
++                    const fieldOffset = fieldInfo.fieldOffsetBits >>> 3;
++                    for (let i = 0; i < count; i++) {
++                      const offsetVal = Number(temp & 0xFFFFFFFFn);
++                      const actualOffset = prevRecordDataSize - totalRecordDataSize + recordSize * recordIndex + fieldOffset + (i * 4) + offsetVal;
++                      strings.push(stringTable.get(actualOffset) ?? "");
++                      temp >>= 32n;
++                    }
++                    str = strings;
++                  }
+                   return {
+                     type: "none",
+-                    data: value
++                    data: value,
++                    string: str
+                   };
+                 }
+                 if (recordID === void 0 && fieldIndex === idIndex) {
+@@ -1470,7 +1485,7 @@ class WDCReader {
+                 return {
+                   type: "none",
+                   data: value,
+-                  string: stringTable.get(offset)
++                  string: stringTable.get(offset) ?? ""
+                 };
+               }
+               case "commonData": {
+@@ -2061,7 +2076,7 @@ class DBDParser {
+           } else if (column.type === "string" || column.type === "locstring") {
+             if (cell.data > 0) {
+               assert__default(cell.type === "none", `Invalid data type for string column ${column.name}`);
+-              assert__default(typeof cell.string === "string", `Missing string for string column ${column.name}`);
++              assert__default(typeof cell.string === "string" || Array.isArray(cell.string), `Missing string for string column ${column.name}`);
+               data[column.name] = cell.string;
+             }
+           } else if (column.type === "float") {
+diff --git a/node_modules/@rhyster/wow-casc-dbc/dist/index.mjs b/node_modules/@rhyster/wow-casc-dbc/dist/index.mjs
+index 5660aea..b33b1a4 100644
+--- a/node_modules/@rhyster/wow-casc-dbc/dist/index.mjs
++++ b/node_modules/@rhyster/wow-casc-dbc/dist/index.mjs
+@@ -1445,9 +1445,24 @@ class WDCReader {
+                   fieldInfo.fieldSizeBits
+                 );
+                 if (typeof value === "bigint") {
++                  const count = fieldInfo.fieldSizeBits / 32;
++                  let str = "";
++                  if (count > 1 && Number.isInteger(count)) {
++                    const strings = [];
++                    let temp = value;
++                    const fieldOffset = fieldInfo.fieldOffsetBits >>> 3;
++                    for (let i = 0; i < count; i++) {
++                      const offsetVal = Number(temp & 0xFFFFFFFFn);
++                      const actualOffset = prevRecordDataSize - totalRecordDataSize + recordSize * recordIndex + fieldOffset + (i * 4) + offsetVal;
++                      strings.push(stringTable.get(actualOffset) ?? "");
++                      temp >>= 32n;
++                    }
++                    str = strings;
++                  }
+                   return {
+                     type: "none",
+-                    data: value
++                    data: value,
++                    string: str
+                   };
+                 }
+                 if (recordID === void 0 && fieldIndex === idIndex) {
+@@ -1458,7 +1473,7 @@ class WDCReader {
+                 return {
+                   type: "none",
+                   data: value,
+-                  string: stringTable.get(offset)
++                  string: stringTable.get(offset) ?? ""
+                 };
+               }
+               case "commonData": {
+@@ -2049,7 +2064,7 @@ class DBDParser {
+           } else if (column.type === "string" || column.type === "locstring") {
+             if (cell.data > 0) {
+               assert(cell.type === "none", `Invalid data type for string column ${column.name}`);
+-              assert(typeof cell.string === "string", `Missing string for string column ${column.name}`);
++              assert(typeof cell.string === "string" || Array.isArray(cell.string), `Missing string for string column ${column.name}`);
+               data[column.name] = cell.string;
+             }
+           } else if (column.type === "float") {
